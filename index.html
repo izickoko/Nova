@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaTrade — Trade Smarter</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-icon">N</div>
+      Nova<span>Trade</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="markets.html">Markets</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Log In</a>
+      <a href="dashboard.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <!-- Radial glow bg -->
+    <div class="hero-glow"></div>
+    <div class="hero-glow hero-glow--2"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="section-label">
+          <span class="live-dot"></span> Live Markets Open
+        </div>
+
+        <h1 class="hero-title">
+          Trade Stocks &<br/>
+          <span class="hero-title-accent">Crypto</span> With<br/>
+          Precision.
+        </h1>
+
+        <p class="hero-sub">
+          NovaTrade gives you institutional-grade tools in a clean, 
+          powerful interface. Start your portfolio today — no real funds required.
+        </p>
+
+        <div class="hero-actions">
+          <a href="dashboard.html" class="btn btn-primary btn-lg">
+            Open Dashboard →
+          </a>
+          <a href="markets.html" class="btn btn-outline btn-lg">
+            Explore Markets
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-val mono">$4.2B+</span>
+            <span class="hero-stat-label">Daily Volume</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val mono">120+</span>
+            <span class="hero-stat-label">Assets Listed</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val mono">0.01%</span>
+            <span class="hero-stat-label">Trading Fee</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero chart preview card -->
+      <div class="hero-card">
+        <div class="hcard-header">
+          <div class="hcard-asset">
+            <div class="hcard-icon">₿</div>
+            <div>
+              <div class="hcard-name">Bitcoin</div>
+              <div class="hcard-sym mono muted">BTC / USD</div>
+            </div>
+          </div>
+          <div class="hcard-price-block">
+            <div class="hcard-price mono" id="hero-btc-price">$67,420.50</div>
+            <div class="badge badge-up" id="hero-btc-change">▲ 2.84%</div>
+          </div>
+        </div>
+
+        <!-- Mini SVG chart -->
+        <div class="hcard-chart">
+          <svg viewBox="0 0 320 90" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00C2FF" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#00C2FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path id="chart-area" fill="url(#chartGrad)"/>
+            <path id="chart-line" fill="none" stroke="#00C2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="hcard-footer">
+          <button class="btn btn-buy" onclick="showToast('Buy order placed! (demo)', 'success')">Buy BTC</button>
+          <button class="btn btn-sell" onclick="showToast('Sell order placed! (demo)', 'error')">Sell BTC</button>
+          <span class="tag">24h Range: $64,800 — $68,100</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TICKER STRIP
+  ══════════════════════════════════════ -->
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MARKET HIGHLIGHTS
+  ══════════════════════════════════════ -->
+  <section class="section-highlights">
+    <div class="container">
+      <div class="section-label fade-up">Market Highlights</div>
+      <div class="highlights-header flex-between fade-up">
+        <h2 class="section-title">Top Movers Today</h2>
+        <a href="markets.html" class="btn btn-ghost btn-sm">View All Markets →</a>
+      </div>
+
+      <div class="highlights-grid" id="highlights-grid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FEATURES
+  ══════════════════════════════════════ -->
+  <section class="section-features">
+    <div class="container">
+      <div class="section-label fade-up">Why NovaTrade</div>
+      <h2 class="section-title fade-up">Everything You Need.<br/>Nothing You Don't.</h2>
+
+      <div class="features-grid">
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Execution</h3>
+          <p>Orders processed in under 10ms. Never miss a move because of lag.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📊</div>
+          <h3>Advanced Charting</h3>
+          <p>Candlestick, line, and area charts with full technical indicator support.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🔒</div>
+          <h3>Bank-Grade Security</h3>
+          <p>256-bit encryption, 2FA, and cold storage for all digital assets.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🌐</div>
+          <h3>120+ Markets</h3>
+          <p>Trade top stocks, crypto, and indices all from one unified dashboard.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📱</div>
+          <h3>Cross-Platform</h3>
+          <p>Seamless experience on desktop, tablet, and mobile. Always in sync.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🤖</div>
+          <h3>Smart Alerts</h3>
+          <p>Price alerts, portfolio notifications, and AI-powered market insights.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════ -->
+  <section class="section-cta fade-up">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2>Ready to Start Trading?</h2>
+          <p>Join thousands of traders on NovaTrade. Demo account — no real money needed.</p>
+          <a href="dashboard.html" class="btn btn-primary btn-lg">Launch Dashboard →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-logo" style="font-size:1.1rem;">
+            <div class="logo-icon">N</div>
+            Nova<span>Trade</span>
+          </div>
+          <p>A demo trading platform built for learning and showcasing modern broker UX. Not a real financial product.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="markets.html">Markets</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="#">Portfolio</a>
+          <a href="#">Alerts</a>
+        </div>
+        <div class="footer-col">
+          <h4>Assets</h4>
+          <a href="#">Crypto</a>
+          <a href="#">Stocks</a>
+          <a href="#">Indices</a>
+          <a href="#">ETFs</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 NovaTrade. All rights reserved.</span>
+        <span class="disclaimer">⚠ Demo only — no real funds or trades.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
