@@ -306,9 +306,23 @@
 }
 
 .feature-icon {
-  font-size: 1.8rem;
-  margin-bottom: 14px;
-  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 18px;
+  transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+  background: rgba(0, 194, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(0, 194, 255, 0.25);
 }
 
 .feature-card h3 {

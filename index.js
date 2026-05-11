@@ -31,7 +31,7 @@ function buildHighlights() {
     </div>
   `).join('');
 
-  // Re-init fade observer for new elements
+  // Re-init observer so newly injected cards get picked up
   initFadeUp();
 }
 
@@ -86,10 +86,14 @@ function updateHeroPrice() {
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Shared setup first (ticker + scroll observer)
+  initShared();
+  // 2. Page-specific
   buildHighlights();
   buildHeroChart();
+  // 3. Start price simulation — update UI on every tick
   simulatePrices(() => {
     updateHeroPrice();
-    buildTicker();   // refresh ticker with new prices
+    buildTicker();
   });
 });

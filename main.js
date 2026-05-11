@@ -41,24 +41,33 @@ function changeArrow(change) {
 
 // ── Build & inject the ticker strip ──
 function buildTicker() {
-  const track = document.getElementById('ticker-track');
-  if (!track) return;
+  const tracks = document.querySelectorAll('.ticker-track');
 
-  // Double items for seamless loop
+  if (!tracks.length) return;
+
   const items = [...MARKET_DATA, ...MARKET_DATA];
-  track.innerHTML = items.map(a => `
-    <div class="ticker-item">
-      <span class="t-name">${a.symbol}</span>
-      <span class="t-price">${formatPrice(a.price)}</span>
-      <span class="t-change ${changeClass(a.change)}">${changeArrow(a.change)} ${Math.abs(a.change).toFixed(2)}%</span>
-    </div>
-  `).join('');
+
+  tracks.forEach(track => {
+    track.innerHTML = items.map(a => `
+      <div class="ticker-item">
+        <span class="t-name">${a.symbol}</span>
+        <span class="t-price">${formatPrice(a.price)}</span>
+        <span class="t-change ${changeClass(a.change)}">
+          ${changeArrow(a.change)} ${Math.abs(a.change).toFixed(2)}%
+        </span>
+      </div>
+    `).join('');
+  });
 }
 
 // ── Scroll fade-up observer ──
 function initFadeUp() {
-  const els = document.querySelectorAll('.fade-up');
+  // Signal to CSS that JS is running — enables the hide/show animation
+  document.body.classList.add('js-ready');
+
+  const els = document.querySelectorAll('.fade-up:not(.visible)');
   if (!els.length) return;
+
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -66,8 +75,14 @@ function initFadeUp() {
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
   els.forEach(el => obs.observe(el));
+
+  // Hard fallback: reveal everything after 1.2s no matter what
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+  }, 1200);
 }
 
 // ── Fake price simulation (small random walk) ──
@@ -123,8 +138,8 @@ function showToast(msg, type = 'info') {
   }, 3000);
 }
 
-// ── On DOM ready ──
-document.addEventListener('DOMContentLoaded', () => {
+// ── Shared init — called by each page's own script ──
+function initShared() {
   buildTicker();
   initFadeUp();
-});
+}
