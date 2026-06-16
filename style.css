@@ -480,14 +480,10 @@ body.js-ready .fade-up.visible {
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(6px);
   z-index: 999;
-  display: flex !important;
   align-items: center;
   justify-content: center;
 }
 
-#auth-overlay[style*="display:none"] {
-  display: none !important;
-}
 
 .modal-box {
   background: var(--bg-card);
