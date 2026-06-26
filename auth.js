@@ -9,7 +9,7 @@ import { getAuth, createUserWithEmailAndPassword,
          signOut, onAuthStateChanged,
          updateProfile }              from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
-// ── Your Firebase config ──
+// Your Firebase config 
 const firebaseConfig = {
   apiKey: "AIzaSyBrHnNbF6lzrMRDohKFUb5sfShV3KqC1FY",
   authDomain: "novatrade-3aa4a.firebaseapp.com",
@@ -23,7 +23,7 @@ const firebaseConfig = {
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ── Modal controls (called from HTML onclick) ──
+// Modal controls (called from HTML onclick)
 window.openModal = function(form) {
   document.getElementById('auth-overlay').style.display = 'flex';
   switchForm(form);
@@ -43,7 +43,7 @@ document.getElementById('auth-overlay').addEventListener('click', function(e) {
   if (e.target === this) window.closeModal();
 });
 
-// ── Sign Up ──
+// Sign Up 
 document.getElementById('signup-btn').addEventListener('click', async () => {
   const name     = document.getElementById('signup-name').value.trim();
   const email    = document.getElementById('signup-email').value.trim();
@@ -66,7 +66,7 @@ document.getElementById('signup-btn').addEventListener('click', async () => {
   }
 });
 
-// ── Login ──
+// Login 
 document.getElementById('login-btn').addEventListener('click', async () => {
   const email    = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
@@ -83,7 +83,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
   }
 });
 
-// ── Auth State — update navbar ──
+// Auth State — update navbar
 onAuthStateChanged(auth, (user) => {
   const actions = document.querySelector('.navbar-actions');
   if (!actions) return;
@@ -107,7 +107,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// ── Human-friendly error messages ──
+// Human-friendly error messages 
 function friendlyError(code) {
   const map = {
     'auth/email-already-in-use':    'That email is already registered.',
